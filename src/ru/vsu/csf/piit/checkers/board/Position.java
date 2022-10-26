@@ -15,38 +15,10 @@ public class Position {
         char letter = s.charAt(0);
         char number = s.charAt(1);
 
-        switch (letter) {
-            case 'A', 'a': {
-                this.col = 0;
-                break;
-            }
-            case 'B', 'b': {
-                this.col = 1;
-                break;
-            }
-            case 'C', 'c': {
-                this.col = 2;
-                break;
-            }
-            case 'D', 'd': {
-                this.col = 3;
-                break;
-            }
-            case 'E', 'e': {
-                this.col = 4;
-                break;
-            }
-            case 'F', 'f': {
-                this.col = 5;
-                break;
-            }
-            case 'G', 'g': {
-                this.col = 6;
-                break;
-            }
-            case 'H', 'h': {
-                this.col = 7;
-                break;
+        char l = 'A';
+        for (int n = 0; n < 8; n ++, l++) {
+            if (Character.toUpperCase(letter) == l) {
+                this.col = n;
             }
         }
 
@@ -62,6 +34,19 @@ public class Position {
         return col;
     }
 
+    @Override
+    public String toString() {
+        String r = String.valueOf(row + 1);
+        char c = 0;
+        int n = 0;
+        for (char l = 'A'; l <= 'H'; l++, n++) {
+            if (col == n) {
+                c = l;
+            }
+        }
+
+        return c + r;
+    }
 
     public boolean checkPosition(){
         return this.row <= 7 && this.col <= 7 && this.col >= 0 && this.row >= 0;

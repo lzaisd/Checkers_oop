@@ -14,6 +14,18 @@ public class Cell {
         this.pos = pos;
     }
 
+    public String cellToString(){
+        if (!containsChecker()){
+            return "- ";
+        } else {
+            return this.checker.checkerToString();
+        }
+    }
+
+    public boolean containsChecker(){
+        return this.checker != null;
+    }
+
     public Checker getChecker() {
         return checker;
     }
