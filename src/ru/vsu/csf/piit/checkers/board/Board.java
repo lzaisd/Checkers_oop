@@ -35,22 +35,23 @@ public class Board {
         };
         initDiagonals();
     }
+
     private void initDiagonals() {
         int r, c, k;
-        for (r = this.getRows() / 2 , c = 0, k = 0; r > 0 || c < this.getCols() - 2; k++) {
+        for (r = this.getRows() / 2, c = 0, k = 0; r > 0 || c < this.getCols() - 2; k++) {
             this.diagonals[k] = initDiagonal(r, c, true);
             if ((r) >= 2) {
                 r -= 2;
             } else {
                 r = 0;
-                c+=2;
+                c += 2;
             }
         }
         for (r = this.getRows() / 2 + 1, c = this.getCols() - 1; r > 0 || c > 0; k++) {
             this.diagonals[k] = initDiagonal(r, c, false);
             if ((r) > 1) {
                 r -= 2;
-            } else if (r == 1){
+            } else if (r == 1) {
                 r = 0;
                 c -= 1;
             } else {
@@ -58,6 +59,7 @@ public class Board {
             }
         }
     }
+
     private ArrayList<Cell> initDiagonal(int startRow, int startCol, boolean isRight) {
         int r;
         int c;
@@ -75,10 +77,13 @@ public class Board {
         return diagonal;
     }
 
-    public PosVector move(PosVector vector, Color c){
-        PosVector pv = getCellByPos(vector.start).getChecker().beat(c);
-        if (pv == null) {
-            pv = getCellByPos(vector.start).getChecker().move(getCellByPos(vector.finish), c);
+    public PosVector move(PosVector vector, Color c) {
+        PosVector pv = null;
+        if (getCellByPos(vector.start).containsChecker()) {
+            pv = getCellByPos(vector.start).getChecker().move(getCellByPos(vector.finish), c);;
+            if (pv == null){
+                pv = getCellByPos(vector.start).getChecker().beat(c);
+            }
         }
         return pv;
     }

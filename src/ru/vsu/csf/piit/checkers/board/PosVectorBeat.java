@@ -7,4 +7,5 @@ public class PosVectorBeat extends PosVector{
         super(start, finish);
         this.posOfBeaten = posOfBeaten;
     }
+
 }

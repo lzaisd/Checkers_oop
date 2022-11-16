@@ -7,9 +7,9 @@ import static ru.vsu.csf.piit.checkers.checker.Color.WHITE;
 
 public class Checker {
 
-    public Position pos;
+    protected Position pos;
     public final Color color;
-    private final Board board;
+    protected final Board board;
 
     public Checker(Position pos, Color color, Board board) {
         this.pos = pos;
@@ -79,6 +79,10 @@ public class Checker {
     private Cell getCellByCoefs(int upCoef, int sideCoef) {
         return this.board.getCellByPos(new Position(this.pos.getRow() + upCoef, this.pos.getCol() + sideCoef));
     }
+//todo: исправить this.pos.getRow() на this.getRow() и this.board.getCellByPos() на this.getCellByPos()
+    /*public int getRow() {
+        return pos.getRow();
+    }*/
 
     public String checkerToString() {
         if (this.color == WHITE) {

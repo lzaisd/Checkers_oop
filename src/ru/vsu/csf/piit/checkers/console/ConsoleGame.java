@@ -73,8 +73,6 @@ public class ConsoleGame {
         return in.nextLine();
     }
 
-
-
     private static boolean checkStrPosition(String strPos) {
         return strPos.length() == 2;
     }
