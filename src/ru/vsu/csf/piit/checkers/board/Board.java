@@ -34,7 +34,7 @@ public class Board {
 
     public PosVector move(PosVector vector, Color c) {
         PosVector pv = null;
-        if (getCellByPos(vector.start).containsChecker()) {
+        if (getCellByPos(vector.start).containsChecker() && !(vector.start.equalsPos(vector.finish))) {
             pv = getCellByPos(vector.start).getChecker().move(getCellByPos(vector.finish), c);
             if (pv == null){
                 pv = getCellByPos(vector.start).getChecker().beat(c);

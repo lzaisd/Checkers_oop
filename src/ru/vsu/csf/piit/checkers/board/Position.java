@@ -48,6 +48,10 @@ public class Position {
         return c + r;
     }
 
+    public boolean equalsPos(Position pos) {
+        return (this.row == pos.row && this.col == pos.col);
+    }
+
     public boolean checkPosition(){
         return this.row <= 7 && this.col <= 7 && this.col >= 0 && this.row >= 0;
     }
