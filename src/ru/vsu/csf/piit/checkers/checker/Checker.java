@@ -91,4 +91,9 @@ public class Checker {
             return "b ";
         }
     }
+    public java.awt.Color getColor() {
+        if (this.color == Color.WHITE) {
+            return java.awt.Color.WHITE;
+        } else return java.awt.Color.BLACK;
+    }
 }

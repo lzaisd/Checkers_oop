@@ -4,7 +4,7 @@ import ru.vsu.csf.piit.checkers.checker.Checker;
 import ru.vsu.csf.piit.checkers.checker.Color;
 
 public class Cell {
-    public final Color color;
+    private final Color color;
     private Checker checker;
     public final Position pos;
 
@@ -14,15 +14,15 @@ public class Cell {
         this.pos = pos;
     }
 
-    public String cellToString(){
-        if (!containsChecker()){
+    public String cellToString() {
+        if (!containsChecker()) {
             return "- ";
         } else {
             return this.checker.checkerToString();
         }
     }
 
-    public boolean containsChecker(){
+    public boolean containsChecker() {
         return this.checker != null;
     }
 
@@ -36,5 +36,11 @@ public class Cell {
 
     public Position getPos() {
         return pos;
+    }
+
+    public java.awt.Color getColor() {
+        if (this.color == Color.WHITE) {
+            return java.awt.Color.WHITE;
+        } else return new java.awt.Color(96, 96, 96);
     }
 }

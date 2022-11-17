@@ -54,6 +54,13 @@ public class King extends Checker {
     }
 
     @Override
+    public java.awt.Color getColor() {
+        if (this.color == Color.WHITE) {
+            return new java.awt.Color(255, 219, 219);
+        } else return new java.awt.Color(7, 26, 0);
+    }
+
+    @Override
     public String checkerToString() {
         if (this.color == WHITE) {
             return "W ";
