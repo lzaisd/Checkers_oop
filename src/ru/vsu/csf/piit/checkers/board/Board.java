@@ -59,4 +59,8 @@ public class Board {
         Cell cell = this.cellArr[row][col];
         return cell.containsChecker();
     }
+
+    public boolean gameOver(){
+        return blackAmount == 0 || whiteAmount == 0;
+    }
 }

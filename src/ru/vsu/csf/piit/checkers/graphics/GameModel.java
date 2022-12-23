@@ -35,6 +35,7 @@ public class GameModel extends MouseAdapter {
                 pv.setFinish(pos);
                 if (board.move(pv, currColor) != null) {
                     currColor = currColor == Color.WHITE ? Color.BLACK : Color.WHITE;
+                    pv.setNull();
                 }
             }
         }

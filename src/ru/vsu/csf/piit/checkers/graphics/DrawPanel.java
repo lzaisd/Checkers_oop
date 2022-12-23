@@ -9,7 +9,7 @@ import java.awt.*;
 public class DrawPanel extends JPanel {
     private Board board;
     private final int cellSize = 50;
-    Color currColor = Color.WHITE;
+    private Color currColor = Color.WHITE;
 
 
     public DrawPanel() {

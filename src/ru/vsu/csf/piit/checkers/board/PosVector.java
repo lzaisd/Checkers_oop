@@ -29,4 +29,9 @@ public class PosVector {
     public void setFinish(Position finish) {
         this.finish = finish;
     }
+
+    public void setNull(){
+        this.start = null;
+        this.finish = null;
+    }
 }
