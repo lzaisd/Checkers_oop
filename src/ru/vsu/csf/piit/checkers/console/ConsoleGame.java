@@ -43,7 +43,7 @@ public class ConsoleGame {
             System.out.println("\nТакой ход невозможен! \n");
             vector = input();
         }
-        System.out.println("Ход из " + vector.start + " в " + vector.finish);
+        System.out.println("Ход из " + vector.getStart() + " в " + vector.getFinish());
     }
 
     private static PosVector input() {

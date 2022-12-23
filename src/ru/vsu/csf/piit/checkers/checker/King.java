@@ -19,7 +19,7 @@ public class King extends Checker {
             }
             board.getCellByPos(this.pos).setChecker(null);
             this.pos = finish.getPos();
-            board.getCellByPos(moveVector.finish).setChecker(this);
+            board.getCellByPos(moveVector.getFinish()).setChecker(this);
             return moveVector;
         } else return null;
     }
@@ -40,7 +40,7 @@ public class King extends Checker {
 
             while (this.board.getCellByPos(new Position(currCell.pos.getRow() + upCoef, currCell.pos.getCol() + sideCoef)) != null) { //todo пока след. €чейка != €чейке финиша
                 if (currCell.containsChecker() && c != currCell.getChecker().color) { //todo отдельна€ проверка цвета если c == currCell.getChecker().color то return null;
-                    posVector = new PosVectorBeat(posVector.start, posVector.finish, currCell.pos);
+                    posVector = new PosVectorBeat(posVector.getStart(), posVector.getFinish(), currCell.pos);
                     checkerAmount ++;
                 }
                 if (checkerAmount > 1) {

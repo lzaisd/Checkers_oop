@@ -3,8 +3,6 @@ package ru.vsu.csf.piit.checkers.board;
 import ru.vsu.csf.piit.checkers.checker.Color;
 import ru.vsu.csf.piit.checkers.checker.Checker;
 
-import java.util.ArrayList;
-
 import static ru.vsu.csf.piit.checkers.checker.Color.*;
 
 public class Board {
@@ -34,10 +32,10 @@ public class Board {
 
     public PosVector move(PosVector vector, Color c) {
         PosVector pv = null;
-        if (getCellByPos(vector.start).containsChecker() && !(vector.start.equalsPos(vector.finish))) {
-            pv = getCellByPos(vector.start).getChecker().move(getCellByPos(vector.finish), c);
+        if (getCellByPos(vector.getStart()).containsChecker() && !(vector.getStart().equalsPos(vector.getFinish()))) {
+            pv = getCellByPos(vector.getStart()).getChecker().move(getCellByPos(vector.getFinish()), c);
             if (pv == null){
-                pv = getCellByPos(vector.start).getChecker().beat(c);
+                pv = getCellByPos(vector.getStart()).getChecker().beat(c);
             }
         }
         return pv;
@@ -55,5 +53,10 @@ public class Board {
 
     public int getLength() {
         return this.getCellArr().length;
+    }
+
+    public boolean cellContainsChecker(int row, int col){
+        Cell cell = this.cellArr[row][col];
+        return cell.containsChecker();
     }
 }
