@@ -17,7 +17,7 @@ public class ConsoleGame {
 
     public static void startGameInConsole() {
         while (true) {
-            outputBoard(board);
+            board.outputBoard();
             System.out.println("\n     Ход белых");
             move(input(), WHITE);
 
@@ -26,7 +26,7 @@ public class ConsoleGame {
                 break;
             }
 
-            outputBoard(board);
+            board.outputBoard();
             System.out.println("\n     Ход черных");
             move(input(), BLACK);
 
@@ -75,32 +75,6 @@ public class ConsoleGame {
 
     private static boolean checkStrPosition(String strPos) {
         return strPos.length() == 2;
-    }
-
-    public static void outputBoard(Board board){
-        System.out.print("\n  ");
-        char letter;
-        int num = 8;
-
-        System.out.print(" ");
-        for (letter = 'A'; letter <= 'H'; letter++) {
-            System.out.print(letter + " ");
-        }
-        System.out.print("\n  ");
-        for (letter = 0; letter < 16; letter++) {
-            System.out.print("_");
-        }
-
-        System.out.println();
-
-        for (int row = 7; row >= 0; row--) {
-            System.out.print(num + "| ");
-            num --;
-            for (int col = 0; col < board.getCellArr().length; col++) {
-                System.out.print(board.getCellArr()[row][col].cellToString());
-            }
-            System.out.println();
-        }
     }
 
 }

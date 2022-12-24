@@ -3,8 +3,8 @@ package ru.vsu.csf.piit.checkers.server;
 public enum Command {
     MOVE("MOVE"),
 
-    MAKEMOVEW("MAKEMOVEW"),
-    MAKEMOVEB("MAKEMOVEB");
+    MAKEMOVE_W("MAKEMOVE_W"),
+    MAKEMOVE_B("MAKEMOVE_B");
 
     private final String commandString;
     Command(String commandString) {

@@ -63,4 +63,31 @@ public class Board {
     public boolean gameOver(){
         return blackAmount == 0 || whiteAmount == 0;
     }
+
+    public void outputBoard(){
+        System.out.print("\n  ");
+        char letter;
+        int num = 8;
+
+        System.out.print(" ");
+        for (letter = 'A'; letter <= 'H'; letter++) {
+            System.out.print(letter + " ");
+        }
+        System.out.print("\n  ");
+        for (letter = 0; letter < 16; letter++) {
+            System.out.print("_");
+        }
+
+        System.out.println();
+
+        for (int row = 7; row >= 0; row--) {
+            System.out.print(num + "| ");
+            num --;
+            for (int col = 0; col < this.getCellArr().length; col++) {
+                System.out.print(this.getCellArr()[row][col].cellToString());
+            }
+            System.out.println();
+        }
+    }
+
 }

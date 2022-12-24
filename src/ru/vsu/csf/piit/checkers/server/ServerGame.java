@@ -42,4 +42,5 @@ public class ServerGame {
     public Color getCurrColor() {
         return currColor;
     }
+
 }

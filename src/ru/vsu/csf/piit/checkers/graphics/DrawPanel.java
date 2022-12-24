@@ -7,13 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DrawPanel extends JPanel {
-    private Board board;
-    private final int cellSize = 50;
-    private Color currColor = Color.WHITE;
+    protected Board board;
+    protected final int cellSize = 50;
+    protected Color currColor = Color.WHITE;
+    private GameModel gm;
 
 
     public DrawPanel() {
         this.board = new Board();
+        this.gm = new GameModel(board, currColor, cellSize);
     }
 
     @Override
@@ -21,8 +23,9 @@ public class DrawPanel extends JPanel {
         BoardDrawer bd = new BoardDrawer(board, cellSize);
         bd.draw(g);
 
-        GameModel gm = new GameModel(board, currColor, cellSize);
         this.addMouseListener(gm);
         repaint();
     }
+
+
 }

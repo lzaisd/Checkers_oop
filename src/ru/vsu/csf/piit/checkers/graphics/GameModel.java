@@ -13,6 +13,7 @@ public class GameModel extends MouseAdapter {
     private Color currColor;
     private int cellSize;
     private PosVector pv = new PosVector();
+    private Position currPos = null;
 
     public GameModel(Board board, Color currColor, int cellSize) {
         this.board = board;
@@ -26,7 +27,7 @@ public class GameModel extends MouseAdapter {
         int col = e.getX() / cellSize - 3;
 
         Position pos = new Position(row, col);
-
+        currPos = pos;
         if (pos.checkPosition()) {
             if (board.cellContainsChecker(row, col)) {
                 pv.setStart(pos);

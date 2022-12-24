@@ -38,7 +38,7 @@ public class ServerGameSession implements Runnable{
     public Position getPosition(){
         String answer = "";
         try {
-            String command = (game.getCurrColor() == Color.WHITE) ? Command.MAKEMOVEW.getCommandString() : Command.MAKEMOVEB.getCommandString();
+            String command = (game.getCurrColor() == Color.WHITE) ? Command.MAKEMOVE_W.getCommandString() : Command.MAKEMOVE_B.getCommandString();
             System.out.println("To client: " + command);
             out.println(command);
 
