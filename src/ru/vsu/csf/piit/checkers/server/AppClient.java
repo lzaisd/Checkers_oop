@@ -1,6 +1,7 @@
 package ru.vsu.csf.piit.checkers.server;
 
 
+import ru.vsu.csf.piit.checkers.board.Board;
 import ru.vsu.csf.piit.checkers.board.PosVector;
 import ru.vsu.csf.piit.checkers.board.Position;
 import ru.vsu.csf.piit.checkers.graphics.DrawPanel;
@@ -18,22 +19,30 @@ public class AppClient extends JFrame {
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
-    private ServerPanel dp;
+    private ClientPanel panel;
 
-    public AppClient(String host, int port, ServerPanel dp) {
+
+    public AppClient(String host, int port, ClientPanel panel) {
         this.host = host;
         this.port = port;
-        this.dp = dp;
+        this.panel = panel;
     }
 
     public static void main(String[] args) throws IOException {
-        ServerPanel dp = new ServerPanel();
-        AppClient client = new AppClient("localhost", 1234, dp);
+        ClientPanel clientPanel = new ClientPanel();
+        AppClient client = new AppClient("localhost", 1234, clientPanel);
         client.start();
+    }
+    private void drawClientPanel(ClientPanel clientPanel){
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(800, 600);
+        add(clientPanel);
+        addMouseListener(clientPanel.getListener());
+        setVisible(true);
     }
 
     public void start() throws IOException {
-        drawPanel(dp);
+        drawClientPanel(panel);
 
         socket = new Socket(host, port);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -42,11 +51,11 @@ public class AppClient extends JFrame {
             String command = in.readLine();
             System.out.println("From server: " + command);
 
-            Position curr = dp.getCurrPos();
+            Position curr = panel.getCurrPos();
             if (command.equals(Command.MAKEMOVE_W.getCommandString()) || command.equals(Command.MAKEMOVE_B.getCommandString())) {
 
                 while (curr == null) {
-                    curr = dp.getCurrPos();
+                    curr = panel.getCurrPos();
                 }
 
             }
@@ -54,15 +63,7 @@ public class AppClient extends JFrame {
             String answer = Command.MOVE.getCommandString() + " " + curr;
             System.out.println("To server: " + answer);
             out.println(answer);
-            dp.setCurrPos(null);
+            panel.setCurrPos(null);
         }
     }
-
-    private void drawPanel(ServerPanel dp){
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(800, 600);
-        add(dp);
-        setVisible(true);
-    }
-
 }
