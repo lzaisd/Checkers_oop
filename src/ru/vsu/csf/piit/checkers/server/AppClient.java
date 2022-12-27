@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class AppClient extends JFrame {
     private final String host;
@@ -19,7 +18,7 @@ public class AppClient extends JFrame {
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
-    ServerPanel dp;
+    private ServerPanel dp;
 
     public AppClient(String host, int port, ServerPanel dp) {
         this.host = host;
@@ -43,25 +42,23 @@ public class AppClient extends JFrame {
             String command = in.readLine();
             System.out.println("From server: " + command);
 
+            Position curr = dp.getCurrPos();
             if (command.equals(Command.MAKEMOVE_W.getCommandString()) || command.equals(Command.MAKEMOVE_B.getCommandString())) {
-                Position curr = dp.getCurrPos();
-                while (curr == null){
+
+                while (curr == null) {
                     curr = dp.getCurrPos();
                 }
-                String answer = Command.MOVE.getCommandString() + " " + curr;
-                System.out.println("To server: " + answer);
-                out.println(answer);
-                dp.setCurrPos(null);
+
             }
 
-            String nextLine = new Scanner(System.in).nextLine();
-            String answer = Command.MOVE.getCommandString() + " " + nextLine;
+            String answer = Command.MOVE.getCommandString() + " " + curr;
             System.out.println("To server: " + answer);
             out.println(answer);
+            dp.setCurrPos(null);
         }
     }
 
-    private void drawPanel(DrawPanel dp){
+    private void drawPanel(ServerPanel dp){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 600);
         add(dp);

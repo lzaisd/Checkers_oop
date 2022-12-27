@@ -48,11 +48,13 @@ public class ServerGameSession implements Runnable{
             String[] answerParsed = answer.split(" ");
             if (Command.MOVE.getCommandString().equals(answerParsed[0])) {
                 System.out.println("Player's position: " + answerParsed[1]);
+//                System.out.println("Player's position: " + answerParsed[2]);
             } else {
                 throw new IllegalArgumentException("Client response is not recognized: " + answer);
             }
 
             return new Position(answerParsed[1]);
+//            return new Position(answerParsed[2]);
 
         } catch (IOException e){
             throw new IllegalStateException("Cannot communicate with a client", e);

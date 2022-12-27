@@ -1,17 +1,14 @@
 package ru.vsu.csf.piit.checkers.server;
 
 import ru.vsu.csf.piit.checkers.board.Board;
-import ru.vsu.csf.piit.checkers.board.PosVector;
 import ru.vsu.csf.piit.checkers.board.Position;
-import ru.vsu.csf.piit.checkers.checker.Color;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ServerGameModel extends MouseAdapter {
     private Board board;
     private int cellSize;
-    private Position currPos = null;
+    private Position currPos;
 
     public ServerGameModel(Board board, int cellSize) {
         this.board = board;
@@ -31,5 +28,9 @@ public class ServerGameModel extends MouseAdapter {
     }
     public void setCurrPos(Position p){
         currPos = p;
+    }
+
+    public Board getBoard() {
+        return board;
     }
 }
